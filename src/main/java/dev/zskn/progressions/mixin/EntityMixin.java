@@ -1,6 +1,8 @@
  package dev.zskn.progressions.mixin;
 
+ import dev.zskn.progressions.ProgressionsLimiter;
  import net.minecraft.entity.Entity;
+ import net.minecraft.world.World;
  import org.spongepowered.asm.mixin.Mixin;
  import org.spongepowered.asm.mixin.Shadow;
  import org.spongepowered.asm.mixin.injection.At;
@@ -12,8 +14,12 @@ public abstract class EntityMixin {
 
      @Shadow protected int netherPortalTime;
 
-     @Inject(method = "tickPortal", at = @At(value = "HEAD"))
+     @Shadow public World world;
+
+     @Inject(method = "tickPortal", at = @At(value = "RETURN"))
      private void tickPortalIfNetherAllowedThroughGamerule(CallbackInfo ci) {
-         this.netherPortalTime = 0;
+         if(!this.world.getGameRules().getBoolean(ProgressionsLimiter.ALLOW_NETHER)) {
+             this.netherPortalTime = 0;
+         }
      }
 }
