@@ -12,9 +12,7 @@ import net.minecraft.world.GameRules;
 public class ProgressionsLimiter implements ModInitializer {
 
     public static final GameRules.Key<GameRules.BooleanRule> ALLOW_END = GameRuleRegistry.register("allowEnd", GameRules.Category.MISC, GameRuleFactory.createBooleanRule(true));
-
     public static final GameRules.Key<GameRules.BooleanRule> ALLOW_WITHER = GameRuleRegistry.register("allowWither", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
-
     public static final GameRules.Key<GameRules.BooleanRule> ALLOW_NETHER = GameRuleRegistry.register("allowNether", GameRules.Category.MISC, GameRuleFactory.createBooleanRule(true));
 
     @Override
